@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grey Leno Fly Brain</title>
+<meta name="description" content="A whole fruit-fly brain — 138,639 neurons from the FlyWire connectome — fires live in your browser and puppeteers Grey Leno on the TUURD Talk stage.">
+<meta property="og:title" content="Grey Leno has a fruit fly brain">
+<meta property="og:description" content="138,639 real Drosophila neurons. 15.1M connections. One late-night host.">
+<meta property="og:image" content="assets/grey-leno-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#110608">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Instrument+Sans:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--BODY-->
+<header class="hero">
+  <canvas id="brain" aria-label="A rotating point cloud of a fruit fly brain with neurons flashing as they spike"></canvas>
+  <div class="wrap hero-copy">
+    <span class="onair"><i></i> On air · episode 1</span>
+    <h1>Grey Leno<span>has a fly brain.</span></h1>
+    <p class="lede">A whole <em>Drosophila</em> brain, <b>138,639</b> neurons wired exactly as the FlyWire connectome maps them, fires live in your browser and runs the TUURD Talk show.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://flyleno.viosarcade.xyz/" target="_blank" rel="noopener">▶ Watch the show</a>
+      <a class="btn" href="#lab">Poke a fly brain</a>
+      <a class="btn" href="https://github.com/SpikeCalls/grey-leno-fly-brain" target="_blank" rel="noopener">★ Source</a>
+    </div>
+    <p class="hint">drag the brain to rotate · each flash is a spike · <span id="brainlog">optic lobes warming up</span></p>
+  </div>
+</header>
+
+<div class="counters" role="list">
+  <div class="wrap">
+    <div class="counter" role="listitem"><strong data-count="138639">138,639</strong><span>neurons</span></div>
+    <div class="counter" role="listitem"><strong data-count="15091983">15,091,983</strong><span>connections</span></div>
+    <div class="counter" role="listitem"><strong data-count="54492922">54,492,922</strong><span>synapses</span></div>
+    <div class="counter" role="listitem"><strong>0.1 ms</strong><span>integration step</span></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="seg" id="lab">
+    <div class="eyebrow">Tonight's experiment</div>
+    <h2>Throw something at a brain.</h2>
+    <p class="sub">This is an 834-neuron toy fly brain running the same leaky integrate-and-fire equations FlyLeno uses on all 138,639 cells. Pick a stage event. Sensory neurons start firing, the spikes travel through the network, and descending neurons decide what Leno's body does.</p>
+    <div class="lab">
+      <div class="panel">
+        <div class="throws" role="group" aria-label="Stage events">
+          <button class="throw" id="t-tomato" data-ev="tomato">🍅 Rotten tomato</button>
+          <button class="throw" id="t-applause" data-ev="applause">👏 Applause</button>
+          <button class="throw" id="t-sugar" data-ev="sugar">🧊 Sugar shower</button>
+          <button class="throw" id="t-heckler" data-ev="heckler">📣 Heckler looms</button>
+        </div>
+        <h3>Spike raster <em id="simclock">0 ms</em></h3>
+        <canvas id="raster" aria-label="Spike raster of the toy network"></canvas>
+        <div class="legend">
+          <span><i style="background:var(--carpet)"></i>sensory</span>
+          <span><i style="background:var(--spike)"></i>central</span>
+          <span><i style="background:#9ee7b0"></i>descending</span>
+          <span><i style="background:var(--axon)"></i>motor</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Leno's motor output <em>live</em></h3>
+        <div class="motor" id="motor"></div>
+        <div class="da">dopamine = tanh((PAM − PPL1) / 20 Hz) = <strong id="da">0.00</strong><br><span id="mood">The crowd is quiet.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seg">
+    <div class="eyebrow">From tomato to twitch</div>
+    <h2>Every move Leno makes is a spike somewhere.</h2>
+    <p class="sub">Nothing is scripted at the motor level. The show stimulates senses, and the connectome does the rest.</p>
+    <div class="pipe">
+      <div class="step"><b>Stage</b><h3>Something happens</h3><p>A tomato lands, the crowd claps, a goose walks on, the music drops.</p></div>
+      <div class="step"><b>Senses</b><h3>Sensory neurons fire</h3><p>Poisson spikes on identified taste, smell, touch, vision and Johnston's-organ hearing cells.</p></div>
+      <div class="step"><b>Connectome</b><h3>15.1M connections</h3><p>Signed synapse counts from FlyWire v783 carry every spike, 1.8 ms later, to its targets.</p></div>
+      <div class="step"><b>Descending</b><h3>Commands leave the brain</h3><p>P9/oDN1 walk, MDN back up, DNa01/02 turn, giant fiber startle, MN9 feed and talk.</p></div>
+      <div class="step"><b>Body</b><h3>Leno moves and speaks</h3><p>A physics ragdoll and a phoneme voice bank turn firing rates into a very strange talk-show host.</p></div>
+    </div>
+  </section>
+
+  <section class="seg">
+    <div class="eyebrow">The wiring</div>
+    <h2>Which neurons the show touches.</h2>
+    <p class="sub">Counts are the identified FlyWire neurons each input drives and each output reads, taken from the running build.</p>
+    <div class="tables">
+      <div class="panel scroll">
+        <h3>Inputs <em>senses</em></h3>
+        <table>
+          <thead><tr><th>Stage event</th><th>Neurons</th><th style="text-align:right">Cells</th></tr></thead>
+          <tbody>
+            <tr><td>Applause</td><td><code>JO-C/E/F antennal</code></td><td class="n">209</td></tr>
+            <tr><td>Rotten tomato</td><td><code>LB1 bitter GRNs</code></td><td class="n">42</td></tr>
+            <tr><td>Smells bad</td><td><code>Or56a geosmin ORNs</code></td><td class="n">39</td></tr>
+            <tr><td>Sugar / snack</td><td><code>LB2d, LB3 sugar GRNs</code></td><td class="n">129</td></tr>
+            <tr><td>Heckler looms</td><td><code>LC4 looming</code></td><td class="n">104</td></tr>
+            <tr><td>Music, low band</td><td><code>JO-B 30–300 Hz</code></td><td class="n">259</td></tr>
+            <tr><td>Music, high band</td><td><code>JO-A 0.3–4 kHz</code></td><td class="n">99</td></tr>
+            <tr><td>Fruit smell, L / R</td><td><code>DM1–4, VA2 ORNs</code></td><td class="n">150 + 140</td></tr>
+            <tr><td>What Leno sees</td><td><code>R1-6, per eye</code></td><td class="n">400 + 400</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel scroll">
+        <h3>Outputs <em>body &amp; voice</em></h3>
+        <table>
+          <thead><tr><th>Behaviour</th><th>Neurons</th><th style="text-align:right">Cells</th></tr></thead>
+          <tbody>
+            <tr><td>Walk forward</td><td><code>P9 (DNp09, DNg97)</code></td><td class="n">4</td></tr>
+            <tr><td>Back up</td><td><code>MDN moonwalker</code></td><td class="n">4</td></tr>
+            <tr><td>Turn L / R</td><td><code>DNa01 / DNa02</code></td><td class="n">2 + 2</td></tr>
+            <tr><td>Startle</td><td><code>giant fiber DNp01</code></td><td class="n">2</td></tr>
+            <tr><td>Groom</td><td><code>aDN1 (DNg62)</code></td><td class="n">2</td></tr>
+            <tr><td>Feed / talk</td><td><code>MN9 proboscis</code></td><td class="n">2</td></tr>
+            <tr><td>Voice</td><td><code>DNg02 + DNp13 song</code></td><td class="n">27</td></tr>
+            <tr><td>Gag / retch</td><td><code>pharyngeal MNs</code></td><td class="n">38</td></tr>
+            <tr><td>Fart</td><td><code>oviDN</code></td><td class="n">6</td></tr>
+            <tr><td>Reward / punish</td><td><code>PAM / PPL1 dopamine</code></td><td class="n">307 / 16</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="seg">
+    <div class="eyebrow">The equations</div>
+    <h2>Two lines of calculus, 138,639 times.</h2>
+    <div class="two">
+      <div class="eq" role="img" aria-label="Leaky integrate-and-fire equations"><span class="c">// every neuron, every 0.1 ms</span>
+dv/dt = (v₀ − v + g) / τ<sub>m</sub>     <span class="c">τm = 20 ms</span>
+dg/dt = −g / τ<sub>s</sub>              <span class="c">τs = 5 ms</span>
+
+<span class="k">if</span> v &gt; −45 mV:  spike
+   v ← −52 mV, g ← 0, rest 2.2 ms
+   <span class="k">each target</span>: g += synapses × 0.275 mV
+                 <span class="c">after 1.8 ms</span></div>
+      <div>
+        <p>The brain model follows Shiu et al. (2024, <em>Nature</em>), where the same equations on the same wiring predicted which neurons drive feeding and grooming, and experiments confirmed it.</p>
+        <p>FlyLeno integrates the model lazily. Between inputs a neuron's voltage has a closed form, so a cell is only stepped while it could reach threshold. That keeps 15 million connections running in plain JavaScript in a Web Worker.</p>
+        <p>On top of the connectome sits a small learning loop. The fly's own PAM and PPL1 dopamine neurons, driven by the crowd, gate plasticity on the synapses onto Leno's vocal motor neurons. Jokes that get applause get repeated.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seg">
+    <div class="eyebrow">Tonight's rundown</div>
+    <h2>A show the fly runs.</h2>
+    <div class="rundown">
+      <div>
+        <h3 class="eyebrow" style="margin-bottom:16px">Segments</h3>
+        <div class="chips">
+          <span class="chip">Opening</span><span class="chip">Monologue</span><span class="chip">Phone-in</span><span class="chip">Take it away, Johnny!</span><span class="chip">A word from our sponsor</span><span class="chip">Technical difficulties</span><span class="chip">Space scabies telethon</span><span class="chip">The rotten éclair</span><span class="chip">Guest: Mr. Frog</span><span class="chip">Guest: The Jonkler</span><span class="chip">Guest: Kybo Rin</span><span class="chip">Guest: a goose</span><span class="chip">Sunday drive</span><span class="chip">Grey Leno dance party</span><span class="chip">Vote Leno</span><span class="chip">500 years young</span><span class="chip">Do The Leno</span><span class="chip">Spin the Wheel of Leno</span><span class="chip">Lullaby</span><span class="chip">Sign-off</span>
+        </div>
+      </div>
+      <div>
+        <h3 class="eyebrow" style="margin-bottom:16px">Events</h3>
+        <div class="chips">
+          <span class="chip ev">Goose</span><span class="chip ev">Spider-Leno</span><span class="chip ev">Swatter glove</span><span class="chip ev">Electric racket</span><span class="chip ev">Duendes</span><span class="chip ev">Clown car</span><span class="chip ev">The Rapture</span><span class="chip ev">Rain cloud</span><span class="chip ev">Mushroom</span><span class="chip ev">Falling rig</span><span class="chip ev">Tomato storm</span><span class="chip ev">Pipe storm</span><span class="chip ev">Rose storm</span><span class="chip ev">Standing ovation</span><span class="chip ev">Sugar shower</span><span class="chip ev">Heckler</span><span class="chip ev">Stagehand snack</span><span class="chip ev">We'll Be Right Back</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seg">
+    <div class="eyebrow">Stills</div>
+    <h2>The host.</h2>
+    <div class="posters">
+      <figure><img src="assets/grey-leno-poster.jpg" alt="Grey Leno as a giant fly-bodied puppet on a red carpet in front of a silent audience" loading="lazy" width="1000" height="1000"><figcaption>Promo still</figcaption></figure>
+      <figure><img src="assets/tuurd-stage.jpg" alt="In-browser render of Grey Leno on the TUURD Talk stage with microphone and toilet" loading="lazy" width="1206" height="504"><figcaption>In the browser, three.js, live</figcaption></figure>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Credits.</b> Brain model after Shiu et al. 2024, <em>Nature</em> (philshiu/Drosophila_brain_model, MIT). Connectome FlyWire v783 (Dorkenwald et al. 2024; Schlegel et al. 2024). Grey Leno character and original model by Vinesauce; model port by huckleberrypie (Nexus Mods). Stage inspired by the TUURD Talk show of <em>Nightmare Puppeteer</em>. Fan project, not affiliated with any of them.</p>
+    <p><a href="https://flyleno.viosarcade.xyz/" target="_blank" rel="noopener">flyleno.viosarcade.xyz</a></p>
+  </div>
+</footer>
+<script type="module" src="app.js"></script>
+<!--/BODY-->
+</body>
+</html>

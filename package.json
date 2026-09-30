@@ -1,0 +1,32 @@
+{
+  "name": "grey-leno-fly-brain",
+  "version": "1.0.0",
+  "description": "A whole fruit-fly brain (138,639 neurons, 15.1M connections) running live in your browser — puppeteering Grey Leno on the TUURD Talk stage.",
+  "type": "module",
+  "main": "src/lif.js",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "demo": "node examples/toy-brain.mjs",
+    "art": "node scripts/make-art.mjs",
+    "sync": "cp src/lif.js site/lif.js && mkdir -p site/assets && cp assets/*.jpg site/assets/",
+    "serve": "npm run sync && npx --yes serve site"
+  },
+  "keywords": [
+    "drosophila",
+    "fruit-fly",
+    "connectome",
+    "flywire",
+    "spiking-neural-network",
+    "leaky-integrate-and-fire",
+    "neuroscience",
+    "webgl",
+    "threejs",
+    "grey-leno",
+    "flyleno"
+  ],
+  "license": "MIT",
+  "homepage": "https://flyleno.viosarcade.xyz/",
+  "engines": {
+    "node": ">=18"
+  }
+}
