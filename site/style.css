@@ -140,11 +140,15 @@ td code { font: 13px var(--mono); color: var(--axon); }
 .posters img { width: 100%; height: auto; display: block; border-radius: 6px; border: 1px solid var(--line); }
 .posters figcaption { font: 12px/1.5 var(--mono); color: var(--dim); margin-top: 8px; }
 
+.shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 20px; }
+.shots figure { margin: 0; }
+.shots img { width: 100%; height: auto; display: block; border-radius: 6px; border: 1px solid var(--line); }
+.shots figcaption { font: 12px/1.5 var(--mono); color: var(--dim); margin-top: 8px; }
 footer { margin-top: 96px; border-top: 1px solid var(--line); padding-block: 36px 60px; color: var(--dim); font-size: 14px; }
 footer p { max-width: 80ch; }
 
 @media (max-width: 860px) {
-  .lab, .tables, .two, .rundown, .posters { grid-template-columns: minmax(0, 1fr); }
+  .lab, .tables, .two, .rundown, .posters, .shots { grid-template-columns: minmax(0, 1fr); }
   .pipe { grid-template-columns: minmax(0, 1fr); }
   .counters .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .counter:nth-child(3) { border-left: 0; }

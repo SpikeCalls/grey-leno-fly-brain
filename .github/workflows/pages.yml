@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
     steps:
-      - uses: actions/checkout@v4
-      - run: cp src/lif.js site/lif.js && mkdir -p site/assets && cp assets/*.jpg site/assets/
+      - uses: actions/checkout@v5
+      - run: cp src/lif.js site/lif.js && mkdir -p site/assets && cp -r assets/*.jpg assets/screens site/assets/
       - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with: { path: site }
       - id: d
         uses: actions/deploy-pages@v4

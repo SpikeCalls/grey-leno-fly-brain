@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://flyleno.viosarcade.xyz/"><img src="assets/banner.svg" alt="Grey Leno has a fly brain — 138,639 neurons, 15.1M connections" width="100%"></a>
+<a href="https://flyleno.viosarcade.xyz/"><img src="assets/banner.jpg" alt="Grey Leno has a fly brain — 138,639 neurons, 15.1M connections" width="100%"></a>
 
 # 🪰 Grey Leno Fly Brain
 
@@ -34,10 +34,18 @@ fire spike by spike and puppeteer **Grey Leno** on the TUURD Talk stage.
 
 Nothing at the motor level is scripted. When Leno walks, it is because `P9` neurons fired. When he backs away from a heckler, that is `MDN`, the moonwalker neuron. When he flinches, the giant fiber (`DNp01`) crossed threshold.
 
-<div align="center">
-<img src="assets/tuurd-stage.jpg" alt="Grey Leno on the TUURD Talk stage, rendered live in the browser" width="88%">
-<br><sub>Live in the browser. The spotlight, the mic stand, the toilet. The fly brain is doing all of it.</sub>
-</div>
+## 📺 Live from the show
+
+<table>
+<tr>
+<td width="50%"><img src="assets/screens/fly-leno-tomatoes.jpg" alt="Fly-Leno flying over the stage while tomatoes splat; the brain panel shows fear at 95%"><br><sub><b>Tomato storm.</b> Fly-Leno takes off. Fear 95 %, arousal 74 %.</sub></td>
+<td width="50%"><img src="assets/screens/stage-wide.jpg" alt="Wide shot of the TUURD Talk theatre with the audience, Fly-Leno eating on stage"><br><sub><b>The house.</b> Snack time on stage: dopamine +0.95, mood +0.71.</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="assets/screens/fly-eyes.jpg" alt="The stage seen through a hexagonal compound-eye filter"><br><sub><b>Fly eyes.</b> What the R1-6 photoreceptors see, ommatidium by ommatidium.</sub></td>
+<td width="50%"><img src="assets/screens/brain-panel.jpg" alt="Sidebar with voice output, motor output meters and a spike raster"><br><sub><b>Inside the head.</b> Voice, motor output and the live spike raster.</sub></td>
+</tr>
+</table>
 
 ## 🧠 From tomato to twitch
 

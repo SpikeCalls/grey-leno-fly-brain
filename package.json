@@ -8,7 +8,7 @@
     "test": "node --test test/*.test.mjs",
     "demo": "node examples/toy-brain.mjs",
     "art": "node scripts/make-art.mjs",
-    "sync": "cp src/lif.js site/lif.js && mkdir -p site/assets && cp assets/*.jpg site/assets/",
+    "sync": "cp src/lif.js site/lif.js && mkdir -p site/assets && cp -r assets/*.jpg assets/screens site/assets/",
     "serve": "npm run sync && npx --yes serve site"
   },
   "keywords": [
